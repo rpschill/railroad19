@@ -1,0 +1,55 @@
+<div>
+  <table matSort (matSortChange)="sortData($event)" id="projects-table" class="mat-elevation-z2">
+    <tr id="header-row" class="mat-elevation-z6">
+      <th mat-sort-header="title">Title</th>
+      <th mat-sort-header="division">Division</th>
+      <th mat-sort-header="project_owner">Project owner</th>
+      <th mat-sort-header="budget">Budget</th>
+      <th mat-sort-header="status">Status</th>
+      <th mat-sort-header="created">Created</th>
+      <th mat-sort-header="modified">Modified</th>
+      <th class="action-col-header">
+        <button mat-mini-fab>
+          <mat-icon>filter_alt</mat-icon>
+        </button>
+      </th>
+    </tr>
+    <ng-container *ngFor="let project of sortedData; index as i">
+      <tr class="data-row" id="data-row-{{i}}">
+        <td>{{ project.title }}</td>
+        <td>{{ project.division }}</td>
+        <td>{{ project.project_owner }}</td>
+        <td>{{ project.budget | currency }}</td>
+        <td *ngIf="!enableEdit || (enableEdit && enableEditIndex !== i)">{{ project.status }}</td>
+        <td *ngIf="enableEdit && enableEditIndex === i">
+          <select name="status" value="{{ project.status }}">
+            <option value="new">new</option>
+            <option value="working">working</option>
+            <option value="archived">archived</option>
+          </select>
+        </td>
+        <td>{{ project.created }}</td>
+        <td *ngIf="project.modified; else noModifiedDate">{{ project.modified }}</td>
+        <ng-template #noModifiedDate>
+          <td class="no-modified-date"></td>
+        </ng-template>
+        <td class="action-col">
+          <button mat-icon-button *ngIf="enableEdit && enableEditIndex === i" (click)="enableEdit = false">
+            <mat-icon color="warn">cancel</mat-icon>
+          </button>
+          <mat-divider [vertical]="true" [inset]="true" *ngIf="enableEdit && enableEditIndex === i"></mat-divider>
+          <button mat-icon-button *ngIf="enableEdit && enableEditIndex === i" (click)="enableEdit = false; updateStatus(projects[i].status, i)">
+            <mat-icon color="primary">save</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="!enableEdit" (click)="toggleEditable(i)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+          <button mat-icon-button>
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>

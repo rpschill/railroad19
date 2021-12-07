@@ -1,0 +1,18 @@
+#stat-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.callout {
+  min-width: 100px;
+  min-height: 100px;
+
+  mat-card-content {
+    padding-top: 5px;
+    font-size: 58px;
+    text-align: left;
+    color: #f44336
+  }
+}

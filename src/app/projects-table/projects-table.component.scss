@@ -1,0 +1,100 @@
+#header-row {
+  position: sticky;
+  top: 0;
+  line-height: 40px;
+  background-color: #f5f4f4;
+  height: 40px;
+  vertical-align: bottom;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 24px;
+  z-index: 10;
+}
+
+span.action-col-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+// Hide scrollbar in Chrome and Safari
+table#projects-table::-webkit-scrollbar {
+  display: none;
+}
+
+table#projects-table {
+  table-layout: fixed;
+  max-height: 60vh;
+  border-collapse: collapse;
+  margin: 0 12px;
+  display: block;
+  overflow-x: auto;
+  overflow-y: scroll;
+  border-spacing: 0;
+
+  // Hide scrollbar in IE
+  -ms-overflow-style: none;
+  // Hide scrollbar in Firefox
+  scrollbar-width: none;
+
+  tbody {
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-top-width: 0;
+    border-left-width: 0;
+    line-height: 50px;
+    vertical-align: middle;
+  }
+
+  td mat-icon:first-of-type {
+    margin-right: 8px;
+  }
+
+  tr:not(#header-row) {
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  tr:not(#header-row):hover {
+    background-color: #eeeeee;
+  }
+
+  tr.data-row {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    td,
+    td.no-modified-date {
+      width: 16%;
+    }
+  }
+
+  th:last-child,
+  td:last-child {
+    border-right-width: 0;
+  }
+
+  tr:last-child td {
+    border-bottom-width: 0;
+  }
+
+  td.action-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .mat-divider.mat-divider-inset {
+    margin-left: 0;
+  }
+}
+
